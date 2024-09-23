@@ -43,8 +43,6 @@ export class AppComponent implements OnInit {
       (response: any) => {
         this.newStories = response.data; // Assign the paginated data
         this.total = response.totalCount; // Assign the total number of IDs
-        console.log('Data:', this.newStories);
-        console.log('Total count:', response.totalCount);
       },
       (error) => {
         console.error('Error fetching data:', error); 
@@ -58,7 +56,6 @@ export class AppComponent implements OnInit {
   }
 
   searchStories() {
-    alert("getting");
     if (this.query) {
       this.http.get<any[]>(`https://localhost:7117/api/HackerNews/search?query=${this.query}`)
         .subscribe(
@@ -88,5 +85,4 @@ export class AppComponent implements OnInit {
   get totalPages(): number {
     return Math.ceil(this.total / this.limit);
   }
-
 }
